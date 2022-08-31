@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    image: joomla
+    container_name: joomla_web
+    volumes:
+      - $PWD/html:/var/www/html
+    ports:
+      - 80:80
+    environment:
+      JOOMLA_DB_HOST: db
+      JOOMLA_DB_PASSWORD: joomla
+      JOOMLA_DB_USER: joomla
+      JOOMLA_DB_NAME: joomla
+  db:
+    image: mysql:5.7
+    container_name: joomla_db
+    volumes:
+      - $PWD/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: joomla
+      MYSQL_USER: joomla
+      MYSQL_PASSWORD: joomla
